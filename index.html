@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Control Financiero & Operativo | 3 Precios</title>
+  <meta name="description" content="Control financiero & operativo para saber cuánto gana realmente tu negocio y qué campañas te dejan utilidad real." />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --border:rgba(15,23,42,.10);
+      --card:#ffffff;
+      --soft:#f8fafc;
+      --shadow: 0 12px 28px rgba(2,6,23,.08);
+      --radius:18px;
+      --max:1050px;
+      --brand:#7c3aed;
+      --brand2:#22c55e;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 90% -10%, rgba(124,58,237,.10), transparent 60%),
+        radial-gradient(850px 560px at 0% 0%, rgba(34,197,94,.08), transparent 55%),
+        var(--bg);
+      line-height:1.5;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 90px;}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:10px 0 18px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:900;
+      letter-spacing:.2px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:4px;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:var(--card);
+      font-weight:800;
+      transition:.2s transform, .2s opacity;
+    }
+    .btn:hover{transform:translateY(-1px); opacity:.96}
+    .btn.primary{
+      border:0; color:#fff;
+      background:linear-gradient(135deg, rgba(124,58,237,.95), rgba(34,197,94,.90));
+      box-shadow:var(--shadow);
+    }
+    .btn.ghost{
+      background:transparent;
+      border:1px solid transparent;
+      color:var(--muted);
+    }
+    .btn.ghost:hover{border-color:var(--border); background:rgba(248,250,252,.9)}
+
+    /* HERO */
+    .hero{
+      padding:22px 0 18px;
+      display:grid; gap:14px;
+    }
+    h1{margin:0; font-size:42px; line-height:1.05; letter-spacing:-.5px}
+    @media (max-width:600px){h1{font-size:34px}}
+    .sub{margin:0; color:var(--muted); max-width:62ch}
+
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px}
+    .chip{
+      font-size:13px; font-weight:700;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(248,250,252,.9);
+      color:var(--text);
+    }
+
+    /* SECTION */
+    .sectionTitle{
+      display:flex; align-items:end; justify-content:space-between; gap:10px;
+      margin:18px 0 10px;
+    }
+    h2{margin:0; font-size:20px}
+    .hint{margin:0; color:var(--muted); font-size:13px}
+
+    /* PLANS */
+    .plans{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+      margin-top:10px;
+    }
+    @media (max-width:900px){.plans{grid-template-columns:1fr}}
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:none;
+    }
+    .card.featured{
+      box-shadow: 0 0 0 6px rgba(124,58,237,.07), var(--shadow);
+      border-color: rgba(124,58,237,.22);
+    }
+    .top{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+      margin-bottom:10px;
+    }
+    .name{font-weight:900; font-size:16px}
+    .tag{
+      font-size:12px; font-weight:800;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background:var(--soft);
+      white-space:nowrap;
+    }
+    .price{
+      display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+      margin:10px 0 12px;
+    }
+    .price .big{font-size:30px; font-weight:950; letter-spacing:-.5px}
+    .price .range{font-size:12px; color:var(--muted)}
+    .bullets{display:grid; gap:8px; padding:0; margin:0; list-style:none}
+    .bullets li{
+      background:var(--soft);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:10px 12px;
+      font-size:13px;
+      color:var(--text);
+    }
+
+    .card .cta{margin-top:12px; width:100%}
+
+    /* PREGUNTAS */
+    .faq{
+      margin-top:18px;
+      display:grid; gap:10px;
+      padding:14px 16px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:rgba(248,250,252,.7);
+    }
+    details{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:10px 12px;
+      background:#fff;
+    }
+    summary{cursor:pointer; font-weight:900}
+    .muted{color:var(--muted)}
+
+    /* Footer */
+    .footer{
+      margin-top:24px;
+      padding-top:16px;
+      border-top:1px solid var(--border);
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Sticky CTA */
+    .sticky{
+      position:fixed; left:50%; transform:translateX(-50%);
+      bottom:14px; z-index:50;
+      width:min(var(--max), calc(100% - 24px));
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      padding:10px 12px;
+      border-radius:16px;
+      background:rgba(255,255,255,.94);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .sticky small{color:var(--muted)}
+  </style>
+
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand"><span class="dot"></span>Método Llecos Rentable</div>
+      <div style="display:flex; gap:8px;">
+        <a class="btn ghost" href="#faq">PREGUNTAS</a>
+        <a class="btn primary" href="#precios">Precios</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>Si eres de Cali, tienes un negocio… pero no sabes si tu negocio es rentable</h1>
+      <p class="sub">
+        ¡Te ayudo! Vendo un sistema (spreadsheet de Google) para que sepas exactamente cuánto gana tu negocio.
+      </p>
+      <div class="chips">
+        <span class="chip">💳 Pago único</span>
+        <span class="chip">⚡ Fácil de usar</span>
+        <span class="chip">📚 No necesitas saber contabilidad</span>
+        <span class="chip">🧾 No reemplaza tu POS, lo complementa</span>
+        <span class="chip">⚡ Deja de pagar suscripciones mensuales</span>
+        
+      </div>
+    </section>
+
+    <!-- ====== SECCION TIKTOK CENTRADO ====== -->
+
+    <section class="tiktok-section">
+      <h2>Mira cómo funciona 👇</h2>
+
+      <div class="tiktok-wrapper">
+        <div class="tiktok-box">
+
+          <!-- VIDEO REAL DE EJEMPLO -->
+          <blockquote class="tiktok-embed"
+            cite="https://www.tiktok.com/@zachking/video/6749520869598481669"
+            data-video-id="6749520869598481669"
+            style="max-width: 605px;min-width: 325px;">
+            <section>
+              <a target="_blank" href="https://www.tiktok.com/@zachking">@zachking</a>
+              <a target="_blank" href="https://www.tiktok.com/@zachking/video/6749520869598481669">
+                Ver en TikTok
+              </a>
+            </section>
+          </blockquote>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="plans">
+      <!-- BASICO -->
+      <div class="card">
+        <div class="top">
+          <div>
+            <div class="name">Básico</div>
+            <div class="muted" style="font-size:13px;">Control financiero</div>
+          </div>
+          <div class="tag">Pequeño</div>
+        </div>
+
+        <div class="price">
+          <div class="big">$90.000</div>
+          <div class="range"></div>
+        </div>
+
+        <ul class="bullets">
+          <li>📊 Ideal para finanzas personales y negocios</li>
+          <li>🏦 Banco + caja (entradas / salidas)</li>
+          <li>🧾 Ingresos + gastos (fijos / variables / costos)</li>
+          <li>📌 Categorías + deudas + ahorro</li>
+        </ul>
+
+        <a class="btn primary cta" target="_blank" rel="noopener"
+           href="https://wa.me/573225213198?text=Hola%20🩷%20Quiero%20el%20PLAN%20BÁSICO%20(COP%20$90.000).%20%C2%BFQu%C3%A9%20necesitas%20para%20empezar%3F">
+          Elegir Básico
+        </a>
+      </div>
+
+      <!-- PRO -->
+      <div class="card featured">
+        <div class="top">
+          <div>
+            <div class="name">Pro</div>
+            <div class="muted" style="font-size:13px;">Gestión completa</div>
+          </div>
+          <div class="tag">Más vendido</div>
+        </div>
+
+        <div class="price">
+          <div class="big">$250.000</div>
+          <div class="range"></div>
+        </div>
+
+        <ul class="bullets">
+          <li>📊 Básico +</li>
+          <li>📊 PYG + utilidad neta automática</li>
+          <li>🎯 Presupuesto + punto de equilibrio</li>
+          <li>🎥 Videos guía (implementación)</li>
+        </ul>
+
+        <a class="btn primary cta" target="_blank" rel="noopener"
+           href="https://wa.me/573225213198?text=Hola%20🩷%20Quiero%20el%20PLAN%20PRO%20(COP%20$250.000).%20%C2%BFMe%20cuentas%20c%C3%B3mo%20funciona%3F">
+          Elegir Pro
+        </a>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="card">
+        <div class="top">
+          <div>
+            <div class="name">Premium</div>
+            <div class="muted" style="font-size:13px;">Escalamiento con ads</div>
+          </div>
+          <div class="tag">Publicidad</div>
+        </div>
+
+        <div class="price">
+          <div class="big">$500.000</div>
+          <div class="range"></div>
+        </div>
+
+        <ul class="bullets">
+          <li>💬 Pro + Consultoría personalizada (1 hora)</li>
+          <li>💬 Vídeos guía + Configuración contigo paso a paso</li>
+          <li>🚀 Enfoque en campañas de Facebook, TikTok o Google</li>
+          <li>🚀 Estructura de costos (calcula el costo real de tu producto)</li>
+        </ul>
+
+        <a class="btn primary cta" target="_blank" rel="noopener"
+           href="https://wa.me/573225213198?text=Hola%20🩷%20Quiero%20el%20PLAN%20PREMIUM%20(COP%20$500.000).%20Hago%20publicidad%20y%20quiero%20escalar%20con%20utilidad%20real.">
+          Elegir Premium
+        </a>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <details>
+        <summary>🤓 Lo que más me preguntan</summary>
+        <p class="muted"></p>
+          <b>¿Qué plan me conviene?</b><br>
+          <br>
+          Básico → Para uso personal o negocio pequeño.<br>
+          Ves entradas, salidas y gastos por categoría.<br>
+          Es para ordenar tus finanzas, no mide rentabilidad real.<br>
+          <br>
+          Pro → Para negocios que ya venden o si estás empezando apenas.<br> 
+          Incluye PyG (Pérdidas y Ganancias) para saber si realmente estás ganando o perdiendo.<br>
+          <br>
+          Premium → Para quienes quieren escalar en serio.<br>
+          Incluye estructura de costos + PyG + control de campañas, para saber cuánto cuesta tu producto y cuánto te deja cada anuncio.<br>
+          <br>
+          <b>¿Cómo es la entrega?</b><br>
+          <br>
+          1️⃣ Me escribes por WhatsApp.<br>
+          2️⃣ Me cuentas tu negocio y qué necesitas.<br>
+          3️⃣ Haces el pago vía Nequi.<br>
+          4️⃣ Te envío un link de Google Sheets para que lo copies a tu cuenta y empieces a usarlo de inmediato.<br>
+          <br>
+          <b>Me ayudas a configurarlo?</b><br>
+          <br>
+          Básico y Pro:<br>
+          No incluyen configuración.<br>
+          Si quieres acompañamiento, tiene un costo adicional de $100.000 e incluye hasta 2 horas donde te ayudo a configurarlo y te explico todo paso a paso.<br>
+          <br>
+          Premium:<br>
+          Sí incluye configuración y acompañamiento.<br>
+          <br> 
+          <b>¿Es pago único o mensual?</b><br>
+          <br>
+          Es pago único.<br>
+          Pagas una sola vez y el archivo es tuyo para siempre.<br>
+          Sin mensualidades, sin suscripciones, sin letras pequeñas.<br>
+          <br>
+          <b>¿Hay garantía?</b><br>
+          <br>
+          Sí.<br>
+          Tienes garantía de 7 días.<br>
+          Si ves que no es lo que esperabas, te devuelvo el dinero.<br>
+          Sin riesgo, lo pruebas tranquilo.<br>
+        </p>
+      </details>
+       <details>
+        <summary>💰 Sobre el precio</summary>
+        <p class="muted"></p>
+          <b>¿Por qué vale eso si es “solo” un Excel?</b><br>
+          <br>
+          Porque no estás comprando un archivo… estás comprando:<br>
+          <br>
+          Un sistema ya pensado para negocios reales<br>
+          Fórmulas, estructura y lógica financiera listas<br>
+          Claridad para tomar decisiones con números<br>
+          Tiempo que te ahorras armándolo desde cero<br>
+          <br>
+          No es “solo un Excel”.<br>
+          Es una herramienta para que dejes de adivinar y empieces a decidir con datos.<br>
+        </p>
+      </details>     
+      <details>
+        <summary>🧠 Sobre si es para ellos</summary>
+        <p class="muted"></p>
+          <b>¿Sirve para mi tipo de negocio?</b><br>
+          <br>
+          Sí, funciona para:<br>
+          <br>
+          Negocios físicos (tienda, restaurante, productos)<br>
+          Ecommerce<br>
+          Servicios<br>
+          Uso personal<br>
+          <br>
+          Si vendes, cobras o manejas gastos… te sirve.<br>
+          <br>
+          <b>¿Es para empresas grandes o pequeñas?</b><br>
+          <br>
+          Para ambas.<br>
+          Pequeñas → Para ordenar sus números y empezar con control.<br>
+          Medianas o grandes → Para tener claridad financiera y tomar mejores decisiones.<br>
+          <br>
+          Todo depende del plan que elijas.<br>
+          Si vendes y manejas dinero, te sirve.<br>
+          <br>
+          <b>¿Funciona si no hago publicidad?</b><br>
+          <br>
+          Sí.<br>
+          Si no haces publicidad, puedes usar el Básico o el Pro sin problema.<br>
+          La publicidad solo es clave en el Premium, que está pensado para medir campañas y escalar.<br>
+          Pero para ordenar tus números o saber si eres rentable, no necesitas hacer ads.<br>
+          <br>
+          <b>¿Necesito saber contabilidad?</b><br>
+          <br>
+          No.<br>
+          El sistema ya tiene las fórmulas hechas.<br>
+          Solo debes ingresar tus datos (ventas, gastos, costos) y todo se calcula automáticamente.<br>
+          Es práctico, no técnico.<br>
+          <br>
+        </p>
+      </details>
+      <details>
+        <summary>💻 Sobre lo técnico</summary>
+        <p class="muted"></p>
+          ¿Por qué vale eso si es “solo” un Excel?
+        </p>
+      </details>
+      <details>
+        <summary>📊 Sobre resultados</summary>
+        <p class="muted"></p>
+          ¿Por qué vale eso si es “solo” un Excel?
+        </p>
+      </details>
+      <details>
+        <summary>🧾 Sobre implementación</summary>
+        <p class="muted"></p>
+          ¿Por qué vale eso si es “solo” un Excel?
+        </p>
+      </details>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> Una empresa Caleña</div>
+      <div>Colombia</div>
+    </footer>
+  </div>
+
+  <div class="sticky">
+    <div>
+      <b>¿Te ayudo a elegir?</b><br />
+      <small>Escríbeme</small>
+    </div>
+    <a class="btn primary" target="_blank" rel="noopener"
+       href="https://wa.me/573225213198?text=Hola%20🩷%20Ay%C3%BAdame%20a%20elegir%20plan%20(B%C3%A1sico%2FPro%2FPremium).%20Mi%20negocio%20es%3A%20">
+      WhatsApp
+    </a>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+<!-- Script oficial de TikTok -->
+  <script async src="https://www.tiktok.com/embed.js"></script>
+
+</body>
+</html>
